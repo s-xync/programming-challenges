@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Animate Element</title>
+  </head>
+  <body>
+    <div id="elementToMove">Element On Move</div>
+    <br />
+    <button id="moveButton">Move</button>
+  </body>
+  <script>
+    document
+      .querySelector("#moveButton")
+      .addEventListener("click", () =>
+        animatenew(document.querySelector("#elementToMove"), 2000, 100)
+      );
+
+    function animate(element, milliseconds, distance) {
+      element.style.position = "relative";
+      let moved = 0;
+      const unitOfMovement = distance / milliseconds;
+      const timer = setInterval(() => {
+        moved += unitOfMovement;
+        if (moved < distance) {
+          element.style.left = `${moved}px`;
+        } else {
+          clearInterval(timer);
+          element.style.position = undefined;
+          element.style.left = "0px";
+        }
+      }, 1);
+    }
+  </script>
+</html>
